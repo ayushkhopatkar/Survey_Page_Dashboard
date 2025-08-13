@@ -41,7 +41,7 @@ function App() {
 
   return (
     <div className="container">
-      <h2>Land Records - State Portal</h2>
+      <div className="header">Land Records Survey Portal</div>
       <select
         value={selectedLink}
         onChange={(e) => setSelectedLink(e.target.value)}
@@ -54,11 +54,7 @@ function App() {
         ))}
       </select>
       <button onClick={loadWebsite}>Continue</button>
-      <p className="note">
-        If the site cannot be embedded, it will open in a new tab automatically.
-      </p>
-
-      {iframeVisible && (
+      {/* {iframeVisible && (
         <iframe
           id="landFrame"
           src={selectedLink}
@@ -71,7 +67,7 @@ function App() {
             marginTop: "15px",
           }}
         ></iframe>
-      )}
+      )} */}
     </div>
   );
 }
