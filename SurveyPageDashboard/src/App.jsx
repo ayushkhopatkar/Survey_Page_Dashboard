@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-
 function App() {
   const [states, setStates] = useState([]);
   const [selectedLink, setSelectedLink] = useState("");
@@ -46,20 +45,31 @@ function App() {
 
   return (
     <div className="container">
-      <div className="header">Land Records Survey Portal</div>
+      <h1 className="header">Land Records Survey Portal</h1>
 
-      <div className="input-container">
-        <div className="input-row">
-          <label>Owner's Name :</label>
-          <input value={ownerName} onChange={(e) => setOwnerName(e.target.value)} />
-        </div>
-        <div className="input-row">
-          <label>Plot / Survey No. :</label>
-          <input value={plotNumber} onChange={(e) => setPlotNumber(e.target.value)} />
-        </div>
+      {/* Owner Details */}
+      <div className="form-group">
+        <label>Owner's Name</label>
+        <input
+          type="text"
+          placeholder="Enter owner's full name"
+          value={ownerName}
+          onChange={(e) => setOwnerName(e.target.value)}
+        />
       </div>
 
-      <div className="action-row">
+      <div className="form-group">
+        <label>Plot / Survey No.</label>
+        <input
+          type="text"
+          placeholder="Enter plot or survey number"
+          value={plotNumber}
+          onChange={(e) => setPlotNumber(e.target.value)}
+        />
+      </div>
+
+      {/* State Selection */}
+      <div className="form-row">
         <select value={selectedLink} onChange={(e) => setSelectedLink(e.target.value)}>
           <option value="">Select a State / UT</option>
           {states.map((state) => (
@@ -68,20 +78,29 @@ function App() {
             </option>
           ))}
         </select>
-        <button onClick={loadWebsite}>Continue</button>
+        <button className="btn secondary" onClick={loadWebsite}>Visit</button>
       </div>
 
-      <div className="input-row" style={{ marginTop: "15px" }}>
-        <label>Upload Result (PDF/Image):</label>
-        <input type="file" accept=".pdf,image/*" onChange={(e) => setFile(e.target.files[0])} />
+      {/* File Upload */}
+      <div className="form-group">
+        <label>Upload Result (PDF/Image)</label>
+        <input
+          type="file"
+          accept=".pdf,image/*"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
       </div>
 
-      <button onClick={handleValidate} style={{ marginTop: "10px" }}>Validate</button>
+      {/* Validate Button */}
+      <button className="btn primary" onClick={handleValidate}>
+        Validate
+      </button>
 
+      {/* Result Section */}
       {result && (
-        <div style={{ marginTop: "15px", color: result.isValid ? "lightgreen" : "red" }}>
+        <div className={`result-box ${result.isValid ? "success" : "error"}`}>
           <b>{result.message}</b>
-          <pre style={{ whiteSpace: "pre-wrap", color: "white" }}>{result.extractedText}</pre>
+          <pre>{result.extractedText}</pre>
         </div>
       )}
     </div>
