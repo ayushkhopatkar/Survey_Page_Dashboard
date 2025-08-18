@@ -51,6 +51,10 @@ select {
   transition: border 0.2s ease;
 }
 
+select{
+  width: 65%;
+}
+
 input:focus,
 select:focus {
   border-color: #ff9500;
@@ -86,7 +90,7 @@ select:focus {
 .btn.secondary {
   background: #f76503;
   color: white;
-  width:40%;
+  width: 35%;
   padding: 6px;
 }
 
